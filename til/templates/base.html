@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'output.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- component -->
+    <div class="flex bg-white">
+        <div class="md:flex w-2/5 md:w-1/4 h-screen bg-white border-r hidden">
+            <div class="mx-auto py-10">
+                <h1 class="text-2xl font-bold mb-10 cursor-pointer text-[#EC5252] duration-150">TIL</h1>
+                <ul>
+                    <a class="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
+                        <i class="bx bx-home bx-sm"></i>
+                        <span class="font-semibold">Home</span>
+                    </a>
+                    {% if request.user.is_authenticated %}
+                    <a class="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150" href="{% url 'account_logout' %}">
+                        <i class="bx bx-log-out bx-sm"></i>
+                        <span class="font-semibold">Logout</span>
+                    </a>
+                    {% else %}
+                    <a class="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150" href="{% url 'account_login' %}">
+                        <i class="bx bx-log-in bx-sm"></i>
+                        <span class="font-semibold">Login</span>
+                    </a>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <main class="min-h-screen w-full bg-white border-l">         
+            <div class="mx-6">
+                <h1 class="my-6 text-3xl" style="margin-bottom: 1rem;">All Posts</h1>
+                {% if request.user.is_authenticated %}
+                    {% block body %}                       
+                    {% endblock %}
+                {% else %}
+                    {% block content %}
+                    {% endblock %}
+                {% endif %}
+            </div>
+        </main>
+    </div>
+
+   
+</body>
+
+</html>
