@@ -1,0 +1,1 @@
+An app that maintains posts using Django
