@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+New Post
+{% endblock title %}
+
+{% block header %}
+Create a new post
+{% endblock header %}
+
+{% block body %}
+<form method="POST" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div
+        class="text-center min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
+        <div>
+            <button
+                class="py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" type="submit">Submit</button>
+        </div>
+</form>
+{% endblock body %}
