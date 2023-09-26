@@ -25,4 +25,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(feed_urls,namespace="feed")),
     re_path("", include("allauth.urls")),
-] + static(settings.MEDIA_URL, docunent_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
