@@ -2,8 +2,8 @@
 
 <!-- post card -->
 <div class="flex bg-white shadow-lg rounded-lg mx-4 my-6 md:mx-auto max-w-md md:max-w-2xl">
-    <div class="flex items-start px-4 py-6">
-        {% thumbnail post.author.profile.image "80x80" crop="center" as im %}
+    <a class="flex items-start px-4 py-6" href="{% url 'profiles:detail' post.author.username %}">
+        {% thumbnail post.author.profile.image "100x100" crop="center" as im %}
             <img class="w-12 h-12 rounded-full object-cover mr-4 shadow" src="{{ im.url }}" alt="avatar">
         {% endthumbnail %}
         <div class="">
@@ -20,5 +20,5 @@
             </a>      
             {% endif %}
         </div>
-    </div>
+    </a>
 </div>

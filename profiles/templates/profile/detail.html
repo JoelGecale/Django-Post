@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load thumbnail   %}
+
+{% block title %}{{ user.username }} {% endblock title%}
+
+{% block body %}
+    <!-- component -->
+<div class="rounded rounded-t-lg overflow-hidden shadow max-w-md my-3">
+    <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
+    <div class="flex justify-center -mt-8">
+    {% thumbnail user.profile.image "100x100" crop="center" as im %}
+        <img src="{{ im.url }}" class="rounded-full border-solid border-white border-2 -mt-3" alt="avatar">
+    {% endthumbnail %}   
+  </div>
+  <div class="text-center px-3 pb-6 pt-2">
+      <h3 class="text-blacktext-sm bold font-sans">{{ user.username }}</h3>
+      <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white js-follow" data-username="{{ user.username }}"
+                                type="button">Follow</button>
+      <p class="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other side!</p>
+  </div>
+    <div class="flex justify-center pb-3 text-grey-dark">
+    <div class="text-center mr-3 border-r pr-3">
+      <h2>{{ total_posts }}</h2>
+      <span>Posts</span>
+    </div>
+    <div class="text-center">
+      <h2>42</h2>
+      <span>Followers</span>
+    </div>
+    </div>
+</div>
+{% endblock body %}
