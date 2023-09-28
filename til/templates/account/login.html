@@ -1,46 +1,64 @@
-{% extends "base.html" %}
+{% load static %}
 
-{% load i18n %}
-{% load account socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
 
-{% block content %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+</head>
 
-<h1>{% trans "Sign In" %}</h1>
+<body>
+<div class="bg-no-repeat bg-cover bg-center relative" style="background-image: url({% static 'css/background.jpg' %})">
+  <div class="absolute bg-gradient-to-b from-blue-500 to-blue-400 opacity-75 inset-0 z-0"></div>
+  <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+      <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
+        <div class="self-start hidden lg:flex flex-col  text-white">
+          <img src="" class="mb-3">
+          <h1 class="mb-3 font-bold text-5xl">Hi! Welcome to TIL </h1>
+          <p class="pr-3">Let yourself be heard! Create your post today! You can also connect with our large network of users by following their posts.</p>
+        </div>
+      </div>
 
-{% get_providers as socialaccount_providers %}
+      <div class="flex justify-center self-center  z-10">       
+        <div class="p-12 bg-white mx-auto rounded-2xl w-100 ">  
+            <div class="mb-4">
+              <h3 class="font-semibold text-2xl text-gray-800">Sign In </h3>
+              <p class="text-gray-500">Please sign in to your account.</p>
+            </div>
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
 
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
+              <div class="flex items-center justify-center my-3">
+                <div class="flex items-center">
+                  <label for="remember_me" class="ml-2 block text-sm text-gray-800">
+                    Don't have an account yet?
+                  </label>
+                </div>
+                <div class="text-sm">
+                  <span>&nbsp;</span>
+                  <a href="{{ signup_url }}" class="text-blue-400 hover:text-blue-500">
+                    Sign up
+                  </a>
+                </div>
+              </div>              
+              <button class="primaryAction w-full flex justify-center bg-blue-400 hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500 my-3" type="submit">Sign In</button>
+            </form>            
+            </div>            
+        </div>
+      </div>
+  </div>
 </div>
+<body>
 
-{% include "socialaccount/snippets/login_extra.html" %}
 
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
-
-{% endblock content %}

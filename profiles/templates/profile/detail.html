@@ -5,7 +5,7 @@
 
 {% block body %}
     <!-- component -->
-<div class="rounded rounded-t-lg overflow-hidden shadow max-w-md my-3" style="max-width: 20rem;">
+<div class="rounded rounded-t-lg overflow-hidden shadow max-w-md my-3 mx-auto" style="max-width: 20rem;">
     <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
     <div class="flex justify-center -mt-8">
     {% thumbnail user.profile.image "100x100" crop="center" as im %}
@@ -36,7 +36,7 @@
       <span>Posts</span>
     </div>
     <div class="text-center">
-      <h2>42</h2>
+      <h2>{{ total_followers }}</h2>
       <span>Followers</span>
     </div>
     </div>
