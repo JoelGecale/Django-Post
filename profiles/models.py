@@ -10,7 +10,10 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         related_name="profile"
     )
-    image =ImageField(upload_to="profiles")
+    image = ImageField(upload_to="profiles")
+    name = models.CharField(max_length=50)
+    tagline = models.CharField(max_length=100)
+    cover = ImageField(upload_to="profiles")
 
     def __str__(self):
         return (self.user.username)

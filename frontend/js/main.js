@@ -91,3 +91,8 @@ $(document).on("click", ".js-submit", function (e) {
         }
     })
 })
+
+$(document).on("click", ".js-toggle-card-modal", function (e) {
+    e.preventDefault();
+    $(".js-card-modal").toggleClass("hidden")
+})
