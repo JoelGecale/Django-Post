@@ -5,8 +5,8 @@
 
 {% block body %}
     <!-- component -->
-<div class="rounded rounded-t-lg overflow-hidden shadow max-w-md my-3 mx-auto" style="max-width: 20rem;">
-    <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
+<div class="rounded rounded-t-lg overflow-hidden shadow max-w-md my-3 mx-auto bg-white" style="max-width: 20rem;">
+    <img src="{{ user.profile.cover.url }}" class="w-full" />
     <div class="flex justify-center -mt-8">
     {% thumbnail user.profile.image "100x100" crop="center" as im %}
         <img src="{{ im.url }}" class="rounded-full border-solid border-white border-2 -mt-3" alt="avatar">
@@ -28,7 +28,7 @@
         {%endif%}
         {% endif %}
 
-      <p class="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other side!</p>
+      <p class="mt-2 font-sans font-light text-grey-dark">{{ user.profile.tagline }}</p>
   </div>
     <div class="flex justify-center pb-3 text-grey-dark">
     <div class="text-center mr-3 border-r pr-3">

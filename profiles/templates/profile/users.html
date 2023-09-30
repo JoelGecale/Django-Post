@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Users
+{% endblock %}
+
+{% block header %} All Users {% endblock %}
+
+{% block body %}
+<div id="users-container" class="flex">
+    {% for user in users %}
+        {% include "includes/user.html" with user=user %}
+    {% endfor %}
+
+    {% for total_post in total_posts %}
+        {% include "includes/user.html" with total_posts=total_post %}
+    {% endfor %}
+</div>
+{% endblock %}

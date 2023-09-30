@@ -77,7 +77,7 @@ $(document).on("click", ".js-submit", function (e) {
         },
         success: (data) => {
             console.log(data)
-            $(".js-follow").prop("disabled", false).text(data.wording);
+            $(this).prop("disabled", false).text(data.wording);
            if(action =="follow"){
                 $(this).attr("data-action","unfollow")
           }
@@ -87,7 +87,7 @@ $(document).on("click", ".js-submit", function (e) {
         },
 
         error: (error) => {
-            console.warn("This is the error ${error}")
+            console.warn(error)
         }
     })
 })
