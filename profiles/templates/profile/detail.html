@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load thumbnail   %}
 
-{% block title %}{{ user.username }} {% endblock title%}
+{% block title %} Detail - {{ user.username }} {% endblock title%}
+{% block header %} Profile of {{ user.username }} {% endblock %}
+{% block breadcrumb %} Home -> Detail {% endblock %}
 
 {% block body %}
     <!-- component -->

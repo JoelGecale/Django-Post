@@ -9,10 +9,10 @@
     {% endthumbnail %}   
     </div>
     <div class="text-center px-3 pb-6 pt-2">
-        <h3 class="text-blacktext-sm bold font-sans">{{ user }}</h3>
+        <h3 class="text-blacktext-sm bold font-sans my-3">{{ user }}</h3>
 
-        {% if request.user.is_authenticated %}
-                <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white js-follow" data-url="{% url 'profiles:follow' user %}" data-username="{{ user }}" 
+        {% if request.user.is_authenticated %}        
+                <button class="bg-blue-400 hover:bg-blue-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500 js-follow" style="margin-left: 10px" data-url="{% url 'profiles:follow' user %}" data-username="{{ user }}" 
                 data-action={% if user.you_follow %} "un" {% endif %} "follow"  type="button">
             {% if user.you_follow %}
                 Unfollow

@@ -2,7 +2,8 @@
 
 {% block title %} Detail View {% endblock %}
 
-{% block header %}{{ post.text }} by {{ post.author.username }} {% endblock %}
+{% block header %} Posted by {{ post.author.username }} {% endblock %}
+{% block breadcrumb %} {{ post.date }} {% endblock %}
 
 {% block body %}
 

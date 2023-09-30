@@ -1,46 +1,38 @@
-{% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block head_title %}{% endblock head_title %}</title>
-    {% block extra_head %}
-    {% endblock extra_head %}
+    <title>{% block title %}{% endblock %}</title>
 
-  
-  </head>
-  <body>
-    
-    {% block body %}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+</head>
 
-    {% if messages %}
-    <div>
-      <strong>{% trans "Messages:" %}</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+<body>
+<div class="bg-no-repeat bg-cover bg-center relative" style="background-image: url({% static 'css/background.jpg' %})">
+  <div class="absolute bg-gradient-to-b from-blue-500 to-blue-400 opacity-75 inset-0 z-0"></div>
+  <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+      <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
+        <div class="self-start hidden lg:flex flex-col  text-white">
+          <img src="" class="mb-3">
+          <h1 class="mb-3 font-bold text-5xl">Hi! Welcome to TIL </h1>
+          <p class="pr-3">Let yourself be heard! Create your post today! You can also connect with our large network of users by following their posts.</p>
+        </div>
+      </div>
 
-    <div>
-      <strong>{% trans "Menu:" %}</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">{% trans "Change Email" %}</a></li>
-        <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
-        <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
-        {% endif %}
-      </ul>
-    </div>
-    {% block content %}
-    {% endblock content %}
-    {% endblock body %}
-    {% block extra_body %}
-    {% endblock extra_body %}
-  </body>
-</html>
+      <div class="flex justify-center self-center  z-10">       
+        <div class="p-12 bg-white mx-auto rounded-2xl w-100 "> 
+            {% block body %}
+            {% endblock body %}
+        </div>
+      </div>
+  </div>
+</div>
+<body>
+
+
+

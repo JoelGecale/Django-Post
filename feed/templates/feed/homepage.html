@@ -1,15 +1,27 @@
 {% extends "base.html" %}
 
 {% block title %}
-Posts
+TIL
 {% endblock %}
 
-{% block header %} All Posts {% endblock %}
+{% block header %} Followed Posts {% endblock %}
+{% block breadcrumb %} Home {% endblock %}
 
 {% block body %}
 <div id="posts-container">
-    {% for post in posts %}
-        {% include "includes/post.html" with post=post show_detail_link=True %}
-    {% endfor %}
+    {% if posts %}
+        {% for post in posts %}
+            {% include "includes/post.html" with post=post show_detail_link=True %}
+        {% endfor %}
+    {% else %}
+        <div class="flex-col flex self-center p-10 sm:max-w-5xl xl:max-w-2xl text-center z-10 bg-white" style="margin: auto; margin-top: 100px;">
+        <div class="self-start hidden lg:flex flex-col mx-auto">
+          <img src="" class="mb-3">
+          <h1 class="mb-3 font-bold text-5xl">Welcome to TIL!</h1>
+          <p class="pr-3 my-6">No posts to view yet? Start following some users.</p>
+          <a href="{% url 'profiles:users' %}" class="my-3 bg-blue-400 hover:bg-blue-500 text-gray-100 p-3 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500" style="margin-left: 10px">View Users List</a>
+        </div>
+      </div>
+    {% endif %}
 </div>
 {% endblock %}
